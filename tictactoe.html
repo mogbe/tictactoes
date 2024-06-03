@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    body{
+        background-color: chocolate;
+    }
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        height: 100vh;
+    }
+    .cells{
+        display: grid;
+        grid-template-columns: repeat(3, 100px);
+        grid-template-rows: repeat(3, 100px);
+        gap: 20px;
+    }
+    .cell{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #9edbbd;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h2>TIC TAC TOE</h2>
+        <div class="cells">
+            <div class="cell" onclick="clicking(0)"></div>
+            <div class="cell"onclick="clicking(1)"></div>
+            <div class="cell"onclick="clicking(2)"></div>
+            <div class="cell"onclick="clicking(3)"></div>           
+            <div class="cell"onclick="clicking(4)"></div>            
+            <div class="cell"onclick="clicking(5)"></div>            
+            <div class="cell"onclick="clicking(6)"></div>            
+            <div class="cell"onclick="clicking(7)"></div>            
+            <div class="cell"onclick="clicking(8)"></div>                    
+        </div>
+        <form><button>Reset ME</button></form>
+    </div>
+    <script>
+        let player = "X";
+        function clicking(index){
+          const cell = document.getElementsByClassName("cell")[index];
+          
+          if(cell.innerHTML == ""){
+            if(player == "X" ){
+            player = "O"; 
+          }
+          else{
+            player = "X";
+          }  
+          
+             cell.innerHTML = player;
+        }
+        
+
+         winning();
+        }
+
+       function winning(){
+        console.log("inside winning");
+            const cell = document.getElementsByClassName("cell");
+            const winArray = [
+                [0,1,2],
+                [3,4,5],
+                [6,7,8],
+                [0,3,6],
+                [1,4,7],
+                [2,5,8],
+                [0,4,8],
+                [2,4,6]
+            ];
+
+            for(const arr of winArray){
+                if(cell[arr[0]].innerHTML != "" && cell[arr[1]].innerHTML != "" && cell[arr[1]].innerHTML != ""){
+                     if(cell[arr[0]].innerHTML == cell[arr[1]].innerHTML && cell[arr[0]].innerHTML == cell[arr[2]].innerHTML){
+                        setTimeout(()=>{
+                        alert("OGA YOU DON WIN");
+                       }, 100);
+                    }
+                } 
+            }
+        }
+         
+
+    </script>
+</body>
+</html>
